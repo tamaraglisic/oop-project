@@ -1,12 +1,11 @@
-package Motel;
+package model;
 
 public class Soba {
+	
 	private String broj;
 	private boolean tv;
 	private boolean miniBar;
 	private TipSobe tip;
-	
-	
 	
 	public Soba() {
 		super();
@@ -17,7 +16,6 @@ public class Soba {
 		this.tv = s.tv;
 		this.miniBar = s.miniBar;
 		this.tip = s.tip;
-		
 	}
 	
 	public Soba(String broj, boolean tv, boolean miniBar, TipSobe tip) {

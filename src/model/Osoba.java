@@ -1,6 +1,7 @@
-package Motel;
+package model;
 
 public class Osoba {
+	
 	protected String ime;
 	protected String prezime;
 	protected String brLicneKarte;

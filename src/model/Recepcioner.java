@@ -1,4 +1,4 @@
-package Motel;
+package model;
 
 public class Recepcioner extends Korisnik {
 

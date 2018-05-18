@@ -1,11 +1,11 @@
-package Motel;
+package model;
 
 
 
 public class Korisnik extends Osoba {
-	protected String korisnickoIme;
-	protected String lozinka;
 	
+	private String korisnickoIme;
+	private String lozinka;
 	
 	public Korisnik() {
 		super();
@@ -36,15 +36,15 @@ public class Korisnik extends Osoba {
 		this.lozinka = lozinka;
 	}
 	
-	
-	
 	public boolean prijava(String korisnickoIme, String lozinka){
-		if (this.getKorisnickoIme().equals(korisnickoIme)){
-			if (this.getLozinka().equals(lozinka)){
-				return true;
-			}
+		if (this.getKorisnickoIme().equals(korisnickoIme) && 
+			this.getLozinka().equals(lozinka)) {
+			
+			return true;
 		}
-		return false;
+		else {
+			return false;
+		}
 	}
 	
 }

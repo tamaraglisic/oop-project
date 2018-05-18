@@ -1,4 +1,4 @@
-package Motel;
+package model;
 
 import java.util.Date;
 

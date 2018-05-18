@@ -1,10 +1,9 @@
-package Motel;
+package model;
 
 public class TipSobe {
+	
 	private String naziv;
 	private int brKreveta;
-	
-	
 	
 	public TipSobe() {
 		super();

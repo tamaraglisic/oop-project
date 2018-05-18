@@ -1,15 +1,17 @@
-package Motel;
+package model;
 
 import java.util.Collection;
 import java.util.Date;
 
+import app.Main;
+
 public class Iznajmljivanje {
+	
 	private Date datumPocetka;
 	private Date datumZavrsetka;
 	private Soba soba;
 	private Collection<Osoba> gosti;
 	private boolean active;
-
 	
 	public Iznajmljivanje() {
 		super();

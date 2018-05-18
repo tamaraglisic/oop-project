@@ -1,4 +1,5 @@
-package Motel;
+package app;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,33 +11,23 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Scanner;
 
+import dao.KorisnikDAO;
+import model.Iznajmljivanje;
+import model.Korisnik;
+import model.Menadzer;
+import model.Osoba;
+import model.Recepcioner;
+import model.Soba;
+import model.StavkaCenovnika;
+import model.TipSobe;
+
 public class Main {
 	
-	public static Collection<Osoba> korisnici = new ArrayList<Osoba>();
 	public static Collection<StavkaCenovnika> cenovnik = new ArrayList<StavkaCenovnika>();
 	public static SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy. HH:mm");
+	public static Scanner inputScanner = new Scanner(System.in);
 	public static Collection<Iznajmljivanje> iznajmljeno = new ArrayList<Iznajmljivanje>();
 	
-	public static void ucitajKorisnike() throws IOException {
-		BufferedReader f = new BufferedReader(new FileReader("./korisnici.txt"));
-		String temp;
-		while((temp = f.readLine()) != null) {
-			String[] tokens = temp.split("\\|");
-			String ime = tokens[0];
-			String prezime = tokens[1];
-			String brLicneKarte = tokens[2];
-			String korisnickoIme = tokens[3];
-			String lozinka = tokens[4];
-			String uloga = tokens[5];
-			if (uloga.equalsIgnoreCase("menadzer")) {
-				Menadzer k = new Menadzer(ime, prezime, brLicneKarte, korisnickoIme, lozinka);
-				korisnici.add(k);
-			}else if (uloga.equalsIgnoreCase("recepcioner")) {
-				Recepcioner k = new Recepcioner(ime, prezime, brLicneKarte, korisnickoIme, lozinka);
-				korisnici.add(k);
-			}
-		}f.close();
-	}
 	public static void ucitajCenovnik() throws IOException, ParseException {
 		BufferedReader f = new BufferedReader(new FileReader("./cenovnik.txt"));
 		String temp;
@@ -50,8 +41,10 @@ public class Main {
 			TipSobe soba = new TipSobe(tokensTipSobe[0], Integer.parseInt(tokensTipSobe[1]));
 			StavkaCenovnika cena = new StavkaCenovnika(datumKreiranja, dnevniBoravak, nocenje, vikendPoskupljenje, soba);
 			cenovnik.add(cena);
-		}f.close();
+		}
+		f.close();
 	}
+	
 	public static void ucitajIznajmljivanja() throws IOException, ParseException {
 		BufferedReader f = new BufferedReader(new FileReader("./iznajmljivanje.txt"));
 		String temp;
@@ -83,7 +76,8 @@ public class Main {
 			Iznajmljivanje izn = new Iznajmljivanje(datumPocetka, datumZavrsetka, s, gosti, active);
 			iznajmljeno.add(izn);
 			
-		}f.close();
+		}
+		f.close();
 	}
 	
 	public static void startniMeni() {
@@ -91,41 +85,39 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException, ParseException {
-		ucitajKorisnike();
+		KorisnikDAO.ucitajKorisnike();
 		ucitajCenovnik();
 		ucitajIznajmljivanja();
 		
 		System.out.println("Dobro dosli. Prijava korisnika:\nUnesite korisnicko ime --> ");
-		Scanner sc = new Scanner(System.in);
-		String korisnickoIme = sc.nextLine();
+	
+		String korisnickoIme = inputScanner.nextLine();
 		System.out.println("Unesite lozinku --> ");
-		String lozinka = sc.nextLine();
+		String lozinka = inputScanner.nextLine();
 		Osoba currentUser = new Osoba();
+		
 		boolean found = false;
-		for (Osoba o: korisnici){
-			Korisnik user = new Korisnik(((Korisnik)o).getKorisnickoIme(), ((Korisnik)o).getLozinka());
+		for (Korisnik user: KorisnikDAO.korisnici){
 			if (user.prijava(korisnickoIme, lozinka)){
 				found = true;
-				currentUser = o;
+				currentUser = user;
 				break;
 			}
 		} 
 		while (found == false){
 			System.out.println("Pogresno korisnicko ime ili lozinka. Pokusajte ponovo --> ");
-			korisnickoIme = sc.nextLine();
+			korisnickoIme = inputScanner.nextLine();
 			System.out.println("Unesite lozinku --> ");
-			lozinka = sc.nextLine();
-			for (Osoba o: korisnici){
-				Korisnik user = new Korisnik(((Korisnik)o).getKorisnickoIme(), ((Korisnik)o).getLozinka());
+			lozinka = inputScanner.nextLine();
+			for (Korisnik user: KorisnikDAO.korisnici){
 				if (user.prijava(korisnickoIme, lozinka)){
 					found = true;
-					currentUser = o;
+					currentUser = user;
 					break;
 				}
 			}
 			
 		}
-		
 		
 		if (currentUser.getClass().getSimpleName().equalsIgnoreCase("menadzer")){
 			Menadzer cu = new Menadzer(currentUser);
@@ -141,7 +133,7 @@ public class Main {
 				System.out.println(i);
 			}
 		}
-		sc.close();
+		inputScanner.close();
 	}
 
 }
