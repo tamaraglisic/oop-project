@@ -1,0 +1,3 @@
+10.05.2018. 14:03|15.05.2018. 09:00|112;true;true;dvokrevetna#2|Steva#Stevic#112052;Mina#Minic#1002532|true
+08.05.2018. 12:22|18.05.2018. 09:00|105;true;true;jednokrevetna#1|Tamara#Glisic#100025|true
+19.05.2018. 15:16|22.05.2018. 09:00|202;true;true;jednokrevetna#1|Aleksa#Markovic#200356|true

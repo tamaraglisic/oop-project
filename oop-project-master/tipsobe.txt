@@ -1,0 +1,4 @@
+jednokrevetna|1
+dvokrevetna|2
+trokrevetna|3
+standard|4

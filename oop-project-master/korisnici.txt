@@ -1,0 +1,4 @@
+Sanja|Mihajlovic|100254|sanjam|sanja|menadzer||
+Petar|Petrovic|251006|petarp|petar|recepcioner||
+Milos|Milosevic|5211036|milosm|milos|recepcioner||
+Vlada|Stojanovic|145116|vladas|vlada|menadzer||

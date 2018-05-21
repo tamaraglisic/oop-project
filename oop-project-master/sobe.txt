@@ -1,0 +1,9 @@
+101|dvokrevetna;2|true|true|true
+102|dvokrevetna;2|true|true|true
+103|trokrevetna;3|true|false|true
+104|trokrevetna;3|true|true|true
+105|jednokrevetna;1|true|true|true
+201|dvokrevetna;2|true|false|true
+202|jednokrevetna;1|true|true|true
+203|jednokrevetna;1|true|true|true
+204|jednokrevetna;1|true|true|true
